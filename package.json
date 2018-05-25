@@ -1,0 +1,11 @@
+{
+  "name": "rollwright",
+  "version": "1.0.0",
+  "description": "A Dice Roller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christopher Greene",
+  "license": "ISC"
+}
