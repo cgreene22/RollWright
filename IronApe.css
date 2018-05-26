@@ -1,0 +1,48 @@
+#mainWrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: blue/* url('/img/mike-szczepanski-383929-unsplash.jpg') */;
+    background-size: cover;
+    background-position: center center;
+}
+
+.flex {
+    display: flex;
+}
+
+.frow {
+    flex-direction: row;
+}
+
+.fcol {
+    flex-direction: column;
+}
+
+.spaced {
+    justify-content: space-between;
+}
+
+.navbar {
+    align-items: center;
+    height: 4.2em;
+    width: 100%;
+    padding: 0em 2em;
+}
+
+.nav-item {
+    padding-left: 2.4em;
+    text-decoration: none;
+}
+
+/* Colors */
+
+.light {
+    color: #dddddd;
+}
+
+.panel {
+    background: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 6em;
+}
