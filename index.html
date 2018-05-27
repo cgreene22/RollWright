@@ -5,26 +5,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="skeleton.css" />
   <link rel="stylesheet" href="normalize.css" />
   <link rel="stylesheet" href="IronApe.css" />
   <title>RollWright</title>
 </head>
 
 <body>
-  <div id="mainWrapper">
-    <nav class="flex frow navbar spaced">
+  <div class="flex-col" id="mainWrapper">
+    <nav class="flex-row navbar spaced">
       <div>
         <h1 class="light">RollWright</h1>
       </div>
-      <div class="flex frow spaced">
+      <div class="flex-row spaced">
         <a class="nav-item light" href="">Home</a>
         <a class="nav-item light" href="">About</a>
         <a class="nav-item light" href="">Contact</a>
       </div>
     </nav>
+    <div class="flex-row contents centered">
+      <div class="panel flex-col">
+        <button onclick="printRoll(20)">1d20</button>
+        <button onclick="printRoll(12)">1d12</button>
+        <button onclick="printRoll(8)">1d8</button>
+        <button onclick="printRoll(6)">1d6</button>
+        <button onclick="printRoll(4)">1d4</button>
+        <button onclick="printRoll(100)">Percentile</button>
+        <button onclick="flip()">Coin Toss</button>
+        <div><input id="custom" type="text" /><button onclick="rollCustom()">Custom</button></div>
+      </div>
+      <div id="rollOut" class="panel flex-col">
+        <p class="light">Welcome to RollWright!<br />Click a button on the left to get things rolling!</p>
+      </div>
+    </div>
   </div>
-
+  <script src="rolls.js"></script>
 </body>
 
 </html>

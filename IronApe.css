@@ -1,21 +1,19 @@
 #mainWrapper {
-    display: flex;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    background: blue/* url('/img/mike-szczepanski-383929-unsplash.jpg') */;
+    background: url('/img/mike-szczepanski-383929-unsplash.jpg');
     background-size: cover;
     background-position: center center;
 }
 
-.flex {
+.flex-row {
     display: flex;
-}
-
-.frow {
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.fcol {
+.flex-col {
+    display: flex;
     flex-direction: column;
 }
 
@@ -23,16 +21,40 @@
     justify-content: space-between;
 }
 
+.centered {
+    align-items: center;
+    justify-content: center;
+}
+
 .navbar {
     align-items: center;
-    height: 4.2em;
-    width: 100%;
+    height: 10vh;
     padding: 0em 2em;
+    background-color: rgba(60, 60, 60, 0.3);
 }
 
 .nav-item {
-    padding-left: 2.4em;
     text-decoration: none;
+    padding-left: 2em;
+}
+
+.contents {
+    height: 90vh;
+    width: 100%;
+}
+
+.panel {
+    background: rgba(0,0,0,0.6);
+    width: 33vw;
+    min-width: 25em;
+    height: 70vh;
+    margin: 0em 2em;
+    padding: 0.5em 2em;
+    overflow-y: auto;
+}
+
+textarea {
+    resize: none;
 }
 
 /* Colors */
@@ -41,8 +63,20 @@
     color: #dddddd;
 }
 
-.panel {
-    background: rgba(0,0,0,0.6);
-    width: 100%;
-    height: 6em;
+/* SCROLLY */
+
+::-webkit-scrollbar {
+    width: .7em;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.8); 
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(60, 60, 60, 0.8); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(60, 60, 60, 1);
 }

@@ -23,6 +23,7 @@ function rollCustom() {
     var modFlag = false;
     var terms = [];
     while (!modFlag) {
+        /*
         var i = 0;
         var check = /[0-9]?d?/i;
         if (check.test(query.charAt(i))) {
@@ -35,6 +36,7 @@ function rollCustom() {
             console.log(terms[1]);
             modFlag = true;
         }
+        */
     }
     // Get the number and type of dice
     var dice = query.split("d");
