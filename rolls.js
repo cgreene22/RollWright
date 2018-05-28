@@ -88,7 +88,7 @@ function rollCustom() {
             total += rolled;
         }
         var printRolls = count.toString();
-        print("Rolled " + rolls + "d" + die + ":" + printRolls + ". Total: " + total);
+        print("Rolled " + toRoll + "d" + die + ":" + printRolls + ".<br />Total: " + total);
     }
 }
 
