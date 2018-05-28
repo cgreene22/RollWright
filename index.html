@@ -23,7 +23,7 @@
       </div>
     </nav>
     <div class="flex-row contents centered">
-      <div class="panel flex-col">
+      <div class="panel flex-col centered">
         <button onclick="printRoll(20)">1d20</button>
         <button onclick="printRoll(12)">1d12</button>
         <button onclick="printRoll(8)">1d8</button>
@@ -31,10 +31,14 @@
         <button onclick="printRoll(4)">1d4</button>
         <button onclick="printRoll(100)">Percentile</button>
         <button onclick="flip()">Coin Toss</button>
-        <div><input id="custom" type="text" /><button onclick="rollCustom()">Custom</button></div>
+        <input id="custom" type="text" placeholder="Enter a custom roll (eg. 3d6+3)" />
+        <button onclick="rollCustom()">Custom</button>
       </div>
       <div id="rollOut" class="panel flex-col">
-        <p class="light">Welcome to RollWright!<br />Click a button on the left to get things rolling!</p>
+        <p class="light">Welcome to RollWright!
+          <br />Click a button on the left to get things rolling!</p>
+          <p class="light">There's a [counter] on the left so you can keep track of the order of your rolls.
+        </p>
       </div>
     </div>
   </div>
