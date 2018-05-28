@@ -75,19 +75,21 @@ function rollCustom() {
     if (!check2.test(rolls)) {
         print("Proper formatting is [number] d [number], like 3d6, with any math after (like 3d6+3).");
     }
-    // Get the number and type of dice
-    /*var dice = rolls.split("d");
-    var toRoll = dice[0];
-    var die = dice[1];
-    var count = [];
-    var total = 0;
-    for (var c = 0; c < toRoll; c++) {
-        var rolled = roll(die);
-        count[c] = " " + rolled;
-        total += rolled;
+    else {
+        // Get the number and type of dice
+        var dice = rolls.split("d");
+        var toRoll = dice[0];
+        var die = dice[1];
+        var count = [];
+        var total = 0;
+        for (var c = 0; c < toRoll; c++) {
+            var rolled = roll(die);
+            count[c] = " " + rolled;
+            total += rolled;
+        }
+        var printRolls = count.toString();
+        print("Rolled " + rolls + "d" + die + ":" + printRolls + ". Total: " + total);
     }
-    var printRolls = count.toString();
-    print("Rolled " + rolls + "d" + die + ":" + printRolls + ". Total: " + total); */
 }
 
 function print(s, i) {
