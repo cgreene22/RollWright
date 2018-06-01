@@ -1,5 +1,5 @@
-const ROLLOUT = document.getElementById('rollOut');
 const CUSTOM = document.getElementById('custom');
+const ROLLOUT = document.getElementById('rollOut');
 
 // We use the iterator so people can tell their rolls apart in the output
 let iterator = 1;
@@ -8,15 +8,7 @@ function roll(die) {
     return Math.floor(Math.random() * die) + 1;
 }
 
-function flip() {
-    var toss = Math.floor(Math.random() * 2) + 1;
-    if (toss == 1)
-        toss = "Heads";
-    else
-        toss = "Tails";
-    print("Coin Tossed: " + toss);
-}
-
+/* 
 function findMath(request) {
     var test = false;
     // It took a frustrating amount of time to discover this
@@ -40,8 +32,10 @@ function findMath(request) {
         test = true;
     }
     return test;
-}
+} 
+*/
 
+/*
 function rollCustom() {
     query = CUSTOM.value;
     // Separate the modifiers
@@ -91,13 +85,94 @@ function rollCustom() {
         print("Rolled " + toRoll + "d" + die + ":" + printRolls + ".<br />Total: " + total);
     }
 }
+*/
 
-function print(s, i) {
-    i = iterator++;
+
+function print(s) {
+    var i = iterator++;
     ROLLOUT.innerHTML = "<p class='light'>[" + i + "] " + s + "</p>" + ROLLOUT.innerHTML;
 }
 
 function printRoll(die) {
     var rolled = roll(die);
     print("Rolled 1d" + die + ": " + rolled);
+}
+
+function flip() {
+    var toss = Math.floor(Math.random() * 2) + 1;
+    if (toss == 1)
+        toss = "Heads";
+    else
+        toss = "Tails";
+    print("Coin Tossed: " + toss);
+}
+
+function getRequest() {
+    var request = CUSTOM.value;
+    checkRequest(request);
+    return request;
+}
+
+function checkRequest(input) {
+    // REGEX CHECK OR SOMETHING
+}
+
+function getIndices(request) {
+    var indices = [];
+    var j = 0;
+    for (var i = 0; i < request.length; i++) {
+        if (request.charAt(i) == "d") {
+            indices[j] = i;
+            j++;
+        }
+    }
+    return indices;
+}
+
+function getRolls(request, indices) {
+    var count = [];
+    var die = [];
+    for (var i = 0; i < indices.length; i++) {
+        //count[i] = getCount(request, indices[i]);
+        die[i] = getDie(request, indices);
+    }
+    var rolls = [count, die];
+    return rolls;
+}
+
+function getCount(req, index) {
+    var i = index-1;
+    var stop = index;
+    while (!isNaN(req.charAt(i)) && i > 0 ) {
+        stop--;
+        i--;
+    }
+    return req.slice(stop-1, index);
+}
+
+function getDie(req, index) {
+    var i = index+1;
+    var stop = index;
+    while (!isNaN(req.charAt(i)) && i < req.length ) {
+        stop++;
+        i++;
+    }
+    return req.slice(index+1, stop);
+}
+
+function rollCustom() {
+    var req = getRequest();
+    // checkRequest(req);
+    var indices = getIndices(req);
+    var rolls = getRolls(req, indices);
+    print(rolls.toString());
+}
+
+class Roll {
+
+// oy
+
+    constructor(request) {
+
+    }
 }
