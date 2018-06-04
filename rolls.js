@@ -1,3 +1,4 @@
+// naturally we start by attaching our HTML elements
 const CUSTOM = document.getElementById("custom");
 const ROLLOUT = document.getElementById("rollOut");
 
@@ -8,84 +9,12 @@ function roll(die) {
   return Math.floor(Math.random() * die) + 1;
 }
 
-/* 
-function findMath(request) {
-    var test = false;
-    // It took a frustrating amount of time to discover this
-    // particular idiosyncracy of JS, namely that special Regex
-    // characters need to be double escaped to find matches.
-    // Fun. So much fun.
-    var checkPlus = new RegExp('\\++');
-    if (checkPlus.test(request)) {
-        test = true;
-    }
-    var checkMinus = new RegExp('\\-+');
-    if (checkMinus.test(request)) {
-        test = true;
-    }
-    var checkMulti = new RegExp('\\*+');
-    if (checkMulti.test(request)) {
-        test = true;
-    }
-    var checkDivi = new RegExp('\\/+');
-    if (checkDivi.test(request)) {
-        test = true;
-    }
-    return test;
-} 
-*/
-
-/*
-function rollCustom() {
-    query = CUSTOM.value;
-    // Separate the modifiers
-    var modFlag = false;
-    var rolls = "";
-    var modifiers = "";
-    var i = 0;
-    try {
-        while (!modFlag) {
-            if (!findMath(query)) {
-                rolls = query;
-                modFlag = true;
-                console.log("Rolls: " + rolls);
-            }
-            else if (findMath(query[i])) {
-                rolls = query.substring(0, i);
-                modifiers = query.substring(i, query.length);
-                console.log("Rolls: " + rolls);
-                console.log("Mods: " + modifiers);
-                modFlag = true;
-            }
-            else {
-                i++;
-            }
-        }
-    }
-    catch (error) {
-        console.log(error);
-    }
-    var check2 = new RegExp('^[0-9]+d[0-9]+$', 'i');
-    if (!check2.test(rolls)) {
-        print("Proper formatting is [number] d [number], like 3d6, with any math after (like 3d6+3).");
-    }
-    else {
-        // Get the number and type of dice
-        var dice = rolls.split("d");
-        var toRoll = dice[0];
-        var die = dice[1];
-        var count = [];
-        var total = 0;
-        for (var c = 0; c < toRoll; c++) {
-            var rolled = roll(die);
-            count[c] = " " + rolled;
-            total += rolled;
-        }
-        var printRolls = count.toString();
-        print("Rolled " + toRoll + "d" + die + ":" + printRolls + ".<br />Total: " + total);
-    }
+function flip() {
+  var toss = Math.floor(Math.random() * 2) + 1;
+  if (toss == 1) toss = "Heads";
+  else toss = "Tails";
+  print("Coin Tossed: " + toss);
 }
-*/
 
 function print(s) {
   var i = iterator++;
@@ -98,75 +27,7 @@ function printRoll(die) {
   print("Rolled 1d" + die + ": " + rolled);
 }
 
-function flip() {
-  var toss = Math.floor(Math.random() * 2) + 1;
-  if (toss == 1) toss = "Heads";
-  else toss = "Tails";
-  print("Coin Tossed: " + toss);
-}
-
-/* function getRequest() {
-  var request = CUSTOM.value;
-  checkRequest(request);
-  return request;
-}
-
-function checkRequest(input) {
-  // REGEX CHECK OR SOMETHING
-}
-
-function getIndices(request) {
-  var indices = [];
-  var j = 0;
-  for (var i = 0; i < request.length; i++) {
-    if (request.charAt(i) == "d") {
-      indices[j] = i;
-      j++;
-    }
-  }
-  return indices;
-}
-
-function getRolls(request, indices) {
-  var count = [];
-  var die = [];
-  for (var i = 0; i < indices.length; i++) {
-    //count[i] = getCount(request, indices[i]);
-    die[i] = getDie(request, indices);
-  }
-  var rolls = [count, die];
-  return rolls;
-}
-
-function getCount(req, index) {
-  var i = index - 1;
-  var stop = index;
-  while (!isNaN(req.charAt(i)) && i > 0) {
-    stop--;
-    i--;
-  }
-  return req.slice(stop - 1, index);
-}
-
-function getDie(req, index) {
-  var i = index + 1;
-  var stop = index;
-  while (!isNaN(req.charAt(i)) && i < req.length) {
-    stop++;
-    i++;
-  }
-  return req.slice(index + 1, stop);
-}
-
-function rollCustom() {
-  var req = getRequest();
-  // checkRequest(req);
-  var indices = getIndices(req);
-  var rolls = getRolls(req, indices);
-  print(rolls.toString());
-} */
-
-// THIRD PHASE
+// THIRD PHASE CUSTOM ROLLS
 
 // takes the user's input
 // finds how many dice roll requests there are
@@ -243,9 +104,11 @@ function calcRolls(rolls) {
     for (var j = 0; j < getRoll[0]; j++) {
       var calc = Math.floor(Math.random() * getRoll[1]) + 1;
       if (j == 0) {
-        total += calc;
+        total += "(" + calc;
+      } else if (j == getRoll[0] - 1) {
+        total += " +" + calc + ")";
       } else {
-        total += "+" + calc;
+        total += " +" + calc;
       }
     }
     calcs[i] = total;
@@ -260,12 +123,40 @@ function substitute(input, rolls, calcs) {
   return input;
 }
 
+// So when it all comes together
 function rollCustom() {
-  var input = CUSTOM.value;
-  var indexes = findDiceCalls(input);
-  var rolls = parseRolls(input, indexes);
-  var calcs = calcRolls(rolls);
-  var equation = substitute(input, rolls, calcs);
-  var final = Math.floor(math.eval(equation));
-  print(equation + ": " + final);
+  try {
+    // We get the user's request
+    var input = CUSTOM.value;
+    // we figure out how many dice rolls we need
+    // and get some info so we can read them properly
+    var indexes = findDiceCalls(input);
+    // we figure out exactly how many rolls to make per type of die
+    // and build an array of these roll request strings
+    var rolls = parseRolls(input, indexes);
+    // we perform the rolls requested
+    // and build an array of these roll result strings
+    var calcs = calcRolls(rolls);
+    // we update our original user's request string
+    // by replacing the roll requests with their results
+    var equation = substitute(input, rolls, calcs);
+    // we then take the final equation string
+    // let MathJS evaluate it by standard order of operations
+    // and then round it down*
+    var final = Math.floor(math.eval(equation));
+    // and finally print it out to our standard output
+    // with the equation final and result so the user can see our workings
+    print(equation + ": " + final);
+  } catch (error) {
+      // I wanna put in better error handling eventually
+      // but for now try/catch is enough error handling
+    print(
+      "Oops, something went wrong. Check your formatting and try again." +
+        "<br /><br />Remember, you can make pretty much any basic math expression, " +
+        "but anything beyond addition, subtraction, multiplication, or " + 
+        "division isn't going to work."
+    );
+  }
 }
+
+// NEXT STEPS: Fixing display sizing issues, responsiveness, and maybe some jQuery(?)
