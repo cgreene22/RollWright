@@ -1,3 +1,5 @@
+/* rollwright.js */
+
 // naturally we start by attaching our HTML elements
 const CUSTOM = document.getElementById("custom");
 const ROLLOUT = document.getElementById("rollOut");
