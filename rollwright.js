@@ -110,14 +110,13 @@ function calcRolls(rolls) {
       } else if (j == 0) {
           total += "(" + calc;
       } else if (j == getRoll[0] - 1) {
-        total += " +" + calc + ")";
+        total += " + " + calc + ")";
       } else {
-        total += " +" + calc;
+        total += " + " + calc;
       }
     }
     calcs[i] = total;
   }
-  console.log(calcs.toString());
   return calcs;
 }
 
