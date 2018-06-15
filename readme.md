@@ -14,4 +14,4 @@ The math is actually handled by a lovely little library called [MathJS](http://m
 
 It's really not too complicated.
 
-Anyway this is mostly just a little project to help me fill out my portfolio with something pretty, functional, and that can help me roll damage for my level 17 Warblade (D`&`D 3.5 is pretty much ridiculous at high level). I've got some fun ideas to implement later on (saved custom rolls, visual themes, multi-user sessioning, better responsive design) but since I'm juggling the tail end of school and the job hunt, it's gonna take some time for that to come to fruition.
+Anyway this is mostly just a little project to help me fill out my portfolio with something pretty, functional, and that can help me roll damage for my level 17 Warblade (D&D 3.5 is pretty much ridiculous at high level). I've got some fun ideas to implement later on (saved custom rolls, visual themes, multi-user sessioning, better responsive design) but since I'm juggling the tail end of school and the job hunt, it's gonna take some time for that to come to fruition.
