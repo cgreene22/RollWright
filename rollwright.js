@@ -105,8 +105,10 @@ function calcRolls(rolls) {
     var getRoll = rolls[i].split("d");
     for (var j = 0; j < getRoll[0]; j++) {
       var calc = Math.floor(Math.random() * getRoll[1]) + 1;
-      if (j == 0) {
-        total += "(" + calc;
+      if (j == 0 && getRoll[0] == 1) {
+        total += "(" + calc + ")";
+      } else if (j == 0) {
+          total += "(" + calc;
       } else if (j == getRoll[0] - 1) {
         total += " +" + calc + ")";
       } else {
@@ -115,6 +117,7 @@ function calcRolls(rolls) {
     }
     calcs[i] = total;
   }
+  console.log(calcs.toString());
   return calcs;
 }
 
